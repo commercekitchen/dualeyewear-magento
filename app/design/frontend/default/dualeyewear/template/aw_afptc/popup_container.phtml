@@ -1,0 +1,57 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Afptc
+ * @version    1.1.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php if(!$this->helper('awafptc')->extensionDisabled()): ?>
+    <div id="aw-afptc-popup" class="block block-btn aw-afptc-popup" style='display:none'></div>
+    <div id="aw-afptc-overlay" style="display:none"></div>
+    <script type="text/javascript">
+        var freeProductsCheckFlag = false;
+        var selectAllfreeProducts = function(txt){
+            if (freeProductsCheckFlag == false) {
+                $$('.free-product-checkbox').each(function(elem){
+                    elem.checked = true;
+                });
+                freeProductsCheckFlag = true;
+                txt.innerHTML= <?php echo Zend_Json::encode($this->__('unselect all'));?>;
+            } else {
+                $$('.free-product-checkbox').each(function(elem){
+                    elem.checked = false;
+                });
+                freeProductsCheckFlag = false;
+                txt.innerHTML= <?php echo Zend_Json::encode($this->__('select all'));?>;
+            }
+        }
+
+        var initForm = function() {
+            var freeProductToCartForm = new VarienForm('free-product-form');
+            freeProductToCartForm.submit = function(){
+                if (this.validator.validate()) {
+                    this.form.submit();
+                }
+            }.bind(freeProductToCartForm);
+            return freeProductToCartForm;
+        }
+    </script>
+<?php endif;?>

@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * MageWorx
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MageWorx EULA that is bundled with
+ * this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.mageworx.com/LICENSE-1.0.html
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@mageworx.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension
+ * for your needs please refer to http://www.mageworx.com/ for more information
+ * or send an email to sales@mageworx.com
+ *
+ * @category   design_default
+ * @package    MageWorx_Downloads
+ * @copyright  Copyright (c) 2009 MageWorx (http://www.mageworx.com/)
+ * @license    http://www.mageworx.com/LICENSE-1.0.html
+ */
+
+/**
+ * Downloads extension
+ *
+ * @category   design_default
+ * @package    MageWorx_Downloads
+ * @author     MageWorx Dev Team <dev@mageworx.com>
+ */
+-->
+<layout version="0.1.0">
+    <mageworx_downloads_files_edit>
+        <reference name="head">
+            <action method="removeItem">
+                <type>js</type>
+                <name>tbt/enhancedgrid/enhancedgrid.js</name>
+            </action>
+            <action method="removeItem">
+                <type>js</type>
+                <name>tbt/enhancedgrid/egsupplemental.js</name>
+            </action>
+            <action method="removeItem">
+                <type>js</type>
+                <name>tbt/enhancedgrid/customfunctions/catalog_products.js</name>
+            </action>
+        </reference>
+    </mageworx_downloads_files_edit>
+
+    <mageworx_downloads_files_index>
+        <reference name="content">
+            <block type="mageworx/downloads_files" name="downloads_files" template="downloads/files.phtml">
+                <block type="mageworx/downloads_switcher_store" name="store_switcher" as="store_switcher">
+                    <action method="setUseConfirm">
+                        <params>0</params>
+                    </action>
+                </block>
+            </block>
+        </reference>
+    </mageworx_downloads_files_index>
+
+    <mageworx_downloads_categories_index>
+        <reference name="content">
+            <block type="mageworx/downloads_categories" name="downloads_categories"
+                   template="downloads/categories.phtml">
+                <block type="mageworx/downloads_switcher_store" name="store_switcher" as="store_switcher">
+                    <action method="setUseConfirm">
+                        <params>0</params>
+                    </action>
+                </block>
+            </block>
+        </reference>
+    </mageworx_downloads_categories_index>
+
+    <adminhtml_catalog_product_edit>
+        <reference name="product_tabs">
+            <action method="addTab">
+                <name>downloads_attachments</name>
+                <block>mageworx/downloads_files_edit_tab_attachments</block>
+            </action>
+        </reference>
+    </adminhtml_catalog_product_edit>
+
+    <adminhtml_catalog_product_new>
+        <reference name="product_tabs">
+            <action method="addTab">
+                <name>downloads_attachments</name>
+                <block>mageworx/downloads_files_edit_tab_attachments</block>
+            </action>
+        </reference>
+    </adminhtml_catalog_product_new>
+
+    <mageworx_downloads_files_import>
+        <remove name="root"/>
+        <block type="adminhtml/page" name="convert_root" output="toHtml" template="page.phtml">
+            <block type="adminhtml/page_head" name="convert_root_head" as="head" template="page/head.phtml">
+                <action method="addJs">
+                    <script>prototype/prototype.js</script>
+                </action>
+                <action method="addJs">
+                    <script>prototype/validation.js</script>
+                </action>
+                <action method="addJs">
+                    <script>varien/js.js</script>
+                </action>
+                <action method="addJs">
+                    <script>mage/translate.js</script>
+                </action>
+                <action method="addJs">
+                    <script>mage/adminhtml/tools.js</script>
+                </action>
+            </block>
+            <block type="adminhtml/template" name="fd_import" template="downloads/import.phtml" output="toHtml"/>
+        </block>
+    </mageworx_downloads_files_import>
+
+    <default>
+        <reference name="head">
+            <action method="addCss">
+                <name>mageworx/fileuploader.css</name>
+            </action>
+            <action method="addJs">
+                <script>mageworx/fileuploader.js</script>
+            </action>
+        </reference>
+    </default>
+</layout>

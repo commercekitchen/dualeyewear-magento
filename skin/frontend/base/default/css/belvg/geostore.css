@@ -1,0 +1,183 @@
+@charset "utf-8";
+  
+ 
+.toolbar A {
+    text-decoration: none;
+}
+.toolbar {
+    margin-top: 10px;
+    background: #FFFFFF;
+    -webkit-box-shadow: 3px 3px 5px rgba( 0, 0, 0, 0.7 );
+    -moz-box-shadow:    3px 3px 5px rgba( 0, 0, 0, 0.7 );
+    box-shadow:         3px 3px 5px rgba( 0, 0, 0, 0.7 );
+    padding: 5px 10px;
+    text-align: center;
+    text-transform: uppercase;
+    }
+    .toolbar .pager {
+        margin-left: 10px;
+        padding-left: 10px;
+        border-left: 1px solid #cccccc;
+        }
+    .toolbar .pager,
+    .toolbar .pager LI {
+        display: inline;
+        }
+        .toolbar .pager LI {
+            padding: 1px 4px;
+            }
+        .toolbar .pager LI:hover,
+        .toolbar .pager .active {
+            background: #73ac66;
+            color: #FFFFFF;
+            text-decoration: none;
+            }
+            
+    .pager-jquery  TD{
+            padding-left: 3px;
+            padding-right: 3px;
+            }
+        
+        .pager-jquery .link {
+                color:#222222;
+                }        
+            .pager-cookie{
+                font-style: normal;
+                font-size: 12px;
+                font-weight: bold;
+                color:#222222;
+                margin:0 auto;
+            }
+            
+    li.currentPage .link{
+        background-color:darkBlue;
+        padding-left: 5px;
+        padding-right: 5px;    
+        color:#FFFFFF;
+    }
+.page-title {
+    margin: 0px 30px 30px 30px;
+    width: 96%;
+}  
+
+.find-table-result {
+    padding-bottom: 20px;
+}
+    .find-table-result TD{
+       padding-right : 1px;  
+    }    
+
+.input-text {
+    width: 150px;
+}
+
+.main-content-bg {
+
+    margin: 0 0 5px;
+    -webkit-box-shadow: 3px 3px 5px rgba( 0, 0, 0, 0.7 );
+    -moz-box-shadow:    3px 3px 5px rgba( 0, 0, 0, 0.7 );
+    box-shadow:         3px 3px 5px rgba( 0, 0, 0, 0.7 );
+    padding: 18px;
+    }
+    
+    .main-content-padd-small {
+        padding: 26px;
+    }
+    
+.location H1{
+    padding-bottom: 15px;
+    color:#5A80A4;
+    padding-left: 30px;
+}    
+
+
+.find-table-result {
+    width: 100%;
+    }
+    .find-table-result TD {
+        vertical-align: top;
+        }
+    .find-table-result-content {
+        padding: 0 10px 0 0;
+        border-right: 1px solid #cccccc;
+        }
+        /*.find-table-result-list {
+            }*/
+            .find-table-result-list > .item {
+                background: url( '../../images/icons/map.png' ) no-repeat 0 12px;
+                padding: 10px 0 10px 30px;
+                border-bottom: 1px solid #cccccc;
+                position: relative;
+                }
+            .find-table-result-list > .item:last-child {
+                padding-bottom: 0;
+                border-bottom: none;
+                }
+                .find-table-result-list .number {
+                    position: absolute;
+                    left: 20px;
+                    top: 11px;
+                    font-weight: bold;
+                    color: #c41200;
+                    }
+                .find-table-result-list .title {
+                    font-size: 14px;
+                    font-weight: bold;
+                    font-family: sans-serif;
+                    }
+                    .find-table-result-list .title > .name {
+                        color: #5a80a4;
+                        }
+                    .find-table-result-list .title > .city {
+                        font-size: 14px;
+                        margin-left: 0.75em;
+                        color: #808285;
+                        }
+                .find-table-result-list ADDRESS {
+                    font-style: normal;
+                    }
+                .find-table-result-list .description {
+                    margin: 0 0 0;
+                    }
+    .find-table-result-map {
+        padding: 0 0 0 10px;
+        }
+
+
+.find-table-result-caption {
+    padding-bottom: 25px;
+}
+.find-table-result-caption TD{
+  padding-right: 10px;   
+}        
+.pre_sore {
+    margin-left: 5px;
+    font-size: 10px;
+    color: blue;
+}
+.img_prev {
+    width:90px;
+    height: 90px;
+    margin-right: 10px;
+    margin-left: 10px;
+    vertical-align: middle;
+    float: right;
+}
+
+.result-table-addr TD{
+    text-align: left;
+}
+
+.productin {
+    width: 200px;
+}
+
+.page-search-query {
+    margin: 0px 30px 30px 30px;
+    width: 96%;
+    border-bottom: 1px solid #ccc;
+} 
+
+.picture_size {
+    width: 100px;
+}

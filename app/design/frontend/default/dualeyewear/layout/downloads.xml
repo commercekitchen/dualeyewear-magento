@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * MageWorx
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MageWorx EULA that is bundled with
+ * this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.mageworx.com/LICENSE-1.0.html
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@mageworx.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension
+ * for your needs please refer to http://www.mageworx.com/ for more information
+ * or send an email to sales@mageworx.com
+ *
+ * @category   design_default
+ * @package    MageWorx_Downloads
+ * @copyright  Copyright (c) 2009 MageWorx (http://www.mageworx.com/)
+ * @license    http://www.mageworx.com/LICENSE-1.0.html
+ */
+
+/**
+ * Downloads extension
+ *
+ * @category   design_default
+ * @package    MageWorx_Downloads
+ * @author     MageWorx Dev Team <dev@mageworx.com>
+ */
+-->
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addJs" ifconfig="mageworx_cms/downloads/enabled"><script>mageworx/downloads.js</script></action>
+            <action method="addCss" ifconfig="mageworx_cms/downloads/enabled"><stylesheet>css/mageworx/downloads.css</stylesheet></action>
+        </reference>
+        <reference name="after_body_start">
+            <block type="core/template" template="downloads/init_popup.phtml" name="init_video_popup" />
+        </reference>
+        <reference name="before_body_end">
+            <block type="core/template" template="downloads/video_popup.phtml" name="video_popup" />
+        </reference>
+    </default>
+
+    <catalog_product_view>
+       <reference name="product.info">
+            <block type="downloads/product" name="downloads.product" />
+        </reference>
+ <!--         <reference name="right">
+            <block type="downloads/product" name="downloads.product" />
+        </reference>-->
+    </catalog_product_view>
+</layout>

@@ -1,0 +1,202 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<?php
+$_product = $this->getProduct();
+$_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
+?>
+<?php if ($_product->isSaleable() && count($_attributes)): ?>
+
+    <?php foreach ($_attributes as $_attribute): ?>
+        <div class="product-shop-box-detail">
+            <span class="left"><label class="required"><em>*</em><?php echo $_attribute->getLabel() . ":" ?></label></span>
+            <span<?php if ($_attribute->decoratedIsLast) { ?> class="last"<?php } ?>>
+                <div class="input-box">
+                    <select name="super_attribute[<?php echo $_attribute->getAttributeId() ?>]" id="attribute<?php echo $_attribute->getAttributeId() ?>" class="required-entry super-attribute-select">
+                        <option><?php echo $this->__('Choose an Option...') ?></option>
+                    </select>
+                </div>
+            </span>
+        </div>
+    <?php endforeach; ?>
+<?php /*?>
+    <script type="text/javascript">
+        var spConfig = new Product.Config(<?php echo $this->getJsonConfig() ?>);
+                function getInternetExplorerVersion()
+                {
+                var rv = - 1; // Return value assumes failure.
+                        if (navigator.appName == 'Microsoft Internet Explorer')
+                {
+                var ua = navigator.userAgent;
+                        var re = new RegExp("MSIE ([0 - 9]{1, }[\.0 - 9]{0, })");
+                        if (re.exec(ua) != null)
+                        rv = parseFloat(RegExp.$1);
+                }
+                return rv;
+                }
+
+        function fireEvent(element, event)
+                {
+                if (document.createEventObject)
+                        {
+    // dispatch for IE
+                        var evt = document.createEventObject();
+                                return element.fireEvent('on' + event, evt);
+                                }
+                else
+                        {
+    // dispatch for firefox + others
+                        var evt = document.createEvent("HTMLEvents");
+                                evt.initEvent(event, true, true);
+                                return !element.dispatchEvent(evt);
+                                }
+                }
+
+        function setDefaultConfigOptions()
+                {
+                if (spConfigIndex >= spConfig.settings.length)
+                        {
+                        return; // stop
+                                }
+
+                spConfig.settings[spConfigIndex].selectedIndex = 1;
+                        var obj = spConfig.settings[spConfigIndex];
+                        ++spConfigIndex;
+                        Event.observe(obj, 'change', function(){});
+                        fireEvent(obj, 'change');
+                        window.setTimeout("setDefaultConfigOptions()", 100); // Add a small delay before moving onto the next option
+                        }
+
+        var spConfigIndex = 0;
+                //var ver = getInternetExplorerVersion();
+                Event.observe(window, 'load', function() {
+        setDefaultConfigOptions();
+                });
+    </script><?php */?>
+    <?php /* ?>   <script type="text/javascript">
+      function getInternetExplorerVersion()
+      {
+      var rv = - 1; // Return value assumes failure.
+      if (navigator.appName == 'Microsoft Internet Explorer')
+      {
+      var ua = navigator.userAgent;
+      var re = new RegExp("MSIE ([0 - 9]{1, }[\.0 - 9]{0, })");
+      if (re.exec(ua) != null)
+      rv = parseFloat(RegExp.$1);
+      }
+      return rv;
+      }
+
+      function fireEvent(element, event)
+      {
+      if (ver == - 1 || ver >= 8.0) {
+      // dispatch for firefox + others
+      var evt = document.createEvent("HTMLEvents");
+      evt.initEvent(event, true, true);
+      return !element.dispatchEvent(evt);
+      }
+      else {
+      // dispatch for IE
+      var evt = document.createEventObject();
+      return element.fireEvent('on' + event, evt);
+      }
+      }
+
+      function setDefaultConfigOptions()
+      {
+      if (spConfigIndex >= spConfig.settings.length)
+      {
+      return; // stop
+      }
+      spConfig.settings[spConfigIndex].selectedIndex = 1;
+      var obj = spConfig.settings[spConfigIndex];
+      ++spConfigIndex;
+      Event.observe(obj, 'change', function(){});
+      fireEvent(obj, 'change');
+      window.setTimeout("setDefaultConfigOptions()", 0); // Add a small delay before moving onto the next option
+      }
+      var spConfigIndex = 0;
+      var ver = getInternetExplorerVersion();
+      Event.observe(window, 'load', function() {
+      setDefaultConfigOptions();
+      });
+      </script><?php */ ?>
+    <script type="text/javascript">
+         var spConfig = new Product.Config(<?php echo $this->getJsonConfig() ?>);
+    function getInternetExplorerVersion()
+// Returns the version of Internet Explorer or a -1
+// (indicating the use of another browser).
+{
+var rv = -1; // Return value assumes failure.
+if (navigator.appName == 'Microsoft Internet Explorer')
+{
+var ua = navigator.userAgent;
+var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+if (re.exec(ua) != null)
+rv = parseFloat( RegExp.$1 );
+}
+return rv;
+}
+
+function fireEvent(element,event)
+{
+if (ver == -1 || ver > 8.0) {
+// dispatch for firefox + others
+var evt = document.createEvent("HTMLEvents");
+evt.initEvent(event, true, true );
+return !element.dispatchEvent(evt);
+}
+else {
+// dispatch for IE
+var evt = document.createEventObject();
+return element.fireEvent('on'+event,evt);
+
+}
+}
+
+function setDefaultConfigOptions()
+{
+if (spConfigIndex >= spConfig.settings.length)
+{
+return; // stop
+}
+spConfig.settings[spConfigIndex].selectedIndex = 1;
+var obj = spConfig.settings[spConfigIndex];
+++spConfigIndex;
+Event.observe(obj,'change',function(){});
+fireEvent(obj,'change');
+window.setTimeout("setDefaultConfigOptions()", 40); // Add a small delay before moving onto the next option
+}
+var spConfigIndex = 0;
+var ver = getInternetExplorerVersion();
+Event.observe(window, 'load', function() {
+setDefaultConfigOptions();
+}); 
+    
+    
+    </script>
+<?php endif; ?>

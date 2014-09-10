@@ -1,0 +1,68 @@
+#aw-afptc-popup {
+    position: fixed;
+    border: 1px #999999 solid;
+    text-align: center !important;
+    padding: 10px;
+    background-color: #ffffff;
+    z-index: 9999;
+    color: black;
+    overflow:  auto;
+    min-height:200px;    
+    min-width: 450px;
+    width: auto;
+    height: auto;    
+} 
+
+#aw-afptc-overlay
+{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:#000;
+    -moz-opacity: 0.3;
+    opacity:.30;
+    filter: alpha(opacity=30);
+    z-index: 100;
+}
+
+.aw-afptc-promo-message {
+    font-size:16px;
+}
+
+#aw-afptc-popup .product-name {
+    font-size:16px;
+}
+
+div#aw-afptc-popup div.block-content ul.free-products-list{
+    max-height:300px;
+    overflow-y:auto;
+    overflow-x:hidden;
+    margin-bottom: 10px;
+}
+
+div#aw-afptc-popup div.block-content ul.product-details li{
+    float:left;
+}
+
+div#aw-afptc-popup div.block-content ul.product-details li div.product-details{
+    padding:10px;
+}
+
+div#aw-afptc-popup div.block-content ul.product-details li div.product-details div.price-box{
+    float:left;
+    text-align:left;
+}
+
+div#aw-afptc-popup div.block-content ul.product-details li:first-child {
+    width:80px;
+}
+div#aw-afptc-popup div.block-content ul.product-details li input{
+    float:left;
+}
+
+div#aw-afptc-popup div.block-content ul.product-details div.validation-advice{
+    width:60px;
+    text-align:left;
+}

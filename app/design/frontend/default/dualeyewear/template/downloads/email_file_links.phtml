@@ -1,0 +1,157 @@
+<?php
+/**
+ * MageWorx
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MageWorx EULA that is bundled with
+ * this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.mageworx.com/LICENSE-1.0.html
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@mageworx.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension
+ * for your needs please refer to http://www.mageworx.com/ for more information
+ * or send an email to sales@mageworx.com
+ *
+ * @category   design_default
+ * @package    MageWorx_Downloads
+ * @copyright  Copyright (c) 2009 MageWorx (http://www.mageworx.com/)
+ * @license    http://www.mageworx.com/LICENSE-1.0.html
+ */
+
+/**
+ * Downloads extension
+ *
+ * @category   design_default
+ * @package    MageWorx_Downloads
+ * @author     MageWorx Dev Team <dev@mageworx.com>
+ */
+?>
+
+<?php
+$isAllCategories = $this->getIsAllCategories();
+$items = $this->getItems();
+$_helper = Mage::helper('downloads');
+$showMessage = false;
+?>
+
+<?php if ($items && $_helper->isEnabled()): ?>
+<?php if ($_helper->getGroupByCategory() || $_helper->checkCustomerAccess($items)): ?>
+    <div class="downloads-links-block">
+        <?php if ($this->getTitle()) { ?><div class="head">
+        <h4><?php echo $this->getTitle() ?></h4>
+    </div><?php } ?>
+
+        <table border="0" cellspacing="2">
+            <tbody>
+                <?php $categoryId = false; ?>
+
+
+                <?php if(!$_helper->getGroupByCategory()): ?>
+
+                <?php foreach ($items as $item): ?>
+                    <?php if ($isAllCategories): ?>
+                        <?php if ($item->getCategoryId() !== $categoryId): ?>
+                            <?php $categoryId = $item->getCategoryId();?>
+                        <tr>
+                            <td colspan="2">
+                                <h5><?php echo $item->getTitle() ?></h5>
+                            </td>
+                        </tr>
+                            <?php endif ?>
+                        <?php endif ?>
+                <tr>
+                    <td><?php echo $_helper->getIcon($item) ?></td>
+                    <td>
+                        <?php $fileName = $item->getName() ?>
+                        <?php if ($_helper->checkCustomerGroupAccess($item)) { ?>
+                            <a href="<?php echo $item->getUrl() != '' ? $item->getUrl() : $_helper->getDownloadLink($item) ?>" title="<?php echo $_helper->htmlEscape($fileName) ?>"><b><?php echo $this->getType() == 'downloads/product_link' && Mage::app()->getRequest()->getParam('mode') != 'list' && strlen($fileName) > Mage::helper('downloads')->getNameSize() ? (substr($fileName, 0, Mage::helper('downloads')->getNameSize()) . '...') : $fileName?></b></a>
+                        <?php } else { ?>
+                        <b><?php echo $fileName ?></b>
+                        <?php } ?>
+                        <?php if ($this->getType() != 'downloads/product_link' && $_helper->isDisplaySize() && $item->getUrl() == ''): ?>
+                        (<?php echo $_helper->__('Size') ?>: <?php echo $_helper->prepareFileSize($item->getSize()) ?>)
+                        <?php endif; ?>
+                        <?php if (!$_helper->checkCustomerGroupAccess($item)) { $showMessage = true; ?>
+                        <span> *</span>
+                        <?php } ?>
+                        <?php if ($_helper->isDisplayDownloads() && !$this->getIsCategory() && $item->getUrl()==''): ?>
+                        <?php echo $_helper->__('Downloads') ?>: <?php echo $item->getDownloads() ?>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                    <?php if ($this->getType() != 'downloads/product_link' && $item->getFileDescription()): ?>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td><?php echo $item->getFileDescription() ?></td>
+                    </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+
+                <?php else: ?>
+
+                <?php foreach($items as $category): ?>
+                <tr>
+                    <td style="padding-bottom: 10px;">
+                        <b><?php echo $category['title']; ?></b>
+                        <table>
+                            <?php foreach($category['files'] as $item): ?>
+                            <?php if ($isAllCategories): ?>
+                                <?php if ($item->getCategoryId() !== $categoryId): ?>
+                                    <?php $categoryId = $item->getCategoryId();?>
+                                    <tr>
+                                        <td colspan="2">
+                                            <h5><?php echo $item->getTitle() ?></h5>
+                                        </td>
+                                    </tr>
+                                    <?php endif ?>
+                                <?php endif ?>
+                            <tr>
+                                <td><?php echo $_helper->getIcon($item) ?></td>
+                                <td>
+                                    <?php $fileName = $item->getName() ?>
+                                    <?php if ($_helper->checkCustomerGroupAccess($item)) { ?>
+                                    <a href="<?php echo $item->getUrl() != '' ? $item->getUrl() : $_helper->getDownloadLink($item) ?>" title="<?php echo $_helper->htmlEscape($fileName) ?>"><b><?php echo $this->getType() == 'downloads/product_link' && Mage::app()->getRequest()->getParam('mode') != 'list' && strlen($fileName) > Mage::helper('downloads')->getNameSize() ? (substr($fileName, 0, Mage::helper('downloads')->getNameSize()) . '...') : $fileName?></b></a>
+                                    <?php } else { ?>
+                                    <b><?php echo $fileName ?></b>
+                                    <?php } ?>
+                                    <?php if ($this->getType() != 'downloads/product_link' && $_helper->isDisplaySize() && $item->getUrl() == ''): ?>
+                                    (<?php echo $_helper->__('Size') ?>: <?php echo $_helper->prepareFileSize($item->getSize()) ?>)
+                                    <?php endif; ?>
+                                    <?php if (!$_helper->checkCustomerGroupAccess($item)) { $showMessage = true; ?>
+                                    <span> *</span>
+                                    <?php } ?>
+                                    <?php if ($_helper->isDisplayDownloads() && !$this->getIsCategory() && $item->getUrl()==''): ?>
+                                    <?php echo $_helper->__('Downloads') ?>: <?php echo $item->getDownloads() ?>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                            <?php if ($this->getType() != 'downloads/product_link' && $item->getFileDescription()): ?>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td><?php echo $item->getFileDescription() ?></td>
+                                </tr>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </table>
+                    </td>
+                </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+
+
+            </tbody>
+        </table>
+        <?php if($showMessage): ?>
+        <p style="padding-top: 5px;"><span>* <?php echo $_helper->getHowToDownloadMessage() ?></span></p>
+        <?php endif; ?>
+    </div>
+    <?php endif; ?>
+<?php endif; ?>

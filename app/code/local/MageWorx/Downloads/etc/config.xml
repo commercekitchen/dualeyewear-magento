@@ -1,0 +1,262 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * MageWorx
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MageWorx EULA that is bundled with
+ * this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.mageworx.com/LICENSE-1.0.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension
+ * for your needs please refer to http://www.mageworx.com/ for more information
+ *
+ * @category   MageWorx
+ * @package    MageWorx_Downloads
+ * @copyright  Copyright (c) 2012 MageWorx (http://www.mageworx.com/)
+ * @license    http://www.mageworx.com/LICENSE-1.0.html
+ */
+
+/**
+ * File Downloads & Product Attachments extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_Downloads
+ * @author     MageWorx Dev Team
+ */
+-->
+<config>
+    <modules>
+        <MageWorx_Downloads>
+            <version>1.4.4</version>
+        </MageWorx_Downloads>
+    </modules>
+
+    <frontend>
+        <translate>
+            <modules>
+                <MageWorx_Downloads>
+                    <files>
+                        <default>MageWorx_Downloads.csv</default>
+                    </files>
+                </MageWorx_Downloads>
+            </modules>
+        </translate>
+        <routers>
+            <downloads>
+                <use>standard</use>
+                <args>
+                    <module>MageWorx_Downloads</module>
+                    <frontName>downloads</frontName>
+                </args>
+            </downloads>
+        </routers>
+        <layout>
+            <updates>
+                <downloads>
+                    <file>downloads.xml</file>
+                </downloads>
+            </updates>
+        </layout>
+    </frontend>
+
+    <global>
+        <rewrite>
+            <mageworx_fileupload>
+                <from><![CDATA[#(^/.+?/catalog_product/upload)|(^/exadmin/adminhtml_catalog_product/upload)#]]></from>
+                <to>/mageworx/downloads_files/upload</to>
+            </mageworx_fileupload>
+        </rewrite>
+        <models>
+            <downloads>
+                <class>MageWorx_Downloads_Model</class>
+                <resourceModel>downloads_mysql4</resourceModel>
+            </downloads>
+            <downloads_mysql4>
+                <class>MageWorx_Downloads_Model_Mysql4</class>
+                <entities>
+                    <categories>
+                        <table>downloads_categories</table>
+                    </categories>
+                    <files>
+                        <table>downloads_files</table>
+                    </files>
+                    <relation>
+                        <table>downloads_relation</table>
+                    </relation>
+                </entities>
+            </downloads_mysql4>
+            <catalog>
+                <rewrite>
+                    <product>MageWorx_Downloads_Model_Catalog_Product</product>
+                </rewrite>
+            </catalog>
+        </models>
+        <resources>
+            <downloads_setup>
+                <setup>
+                    <module>MageWorx_Downloads</module>
+                    <class>MageWorx_Downloads_Model_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </downloads_setup>
+            <downloads_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </downloads_write>
+            <downloads_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </downloads_read>
+        </resources>
+        <blocks>
+            <downloads>
+                <class>MageWorx_Downloads_Block</class>
+            </downloads>
+            <sales>
+                <rewrite>
+                    <order_email_items>MageWorx_Downloads_Block_Sales_Order_Email_Items</order_email_items>
+                    <order_email_invoice_items>MageWorx_Downloads_Block_Sales_Order_Email_Invoice_Items</order_email_invoice_items>
+                </rewrite>
+            </sales>
+            <catalog>
+                <rewrite>
+                    <product_price>MageWorx_Downloads_Block_Catalog_Product_Price</product_price>
+                </rewrite>
+            </catalog>
+        </blocks>
+        <helpers>
+            <downloads>
+                <class>MageWorx_Downloads_Helper</class>
+            </downloads>
+        </helpers>
+    </global>
+
+    <adminhtml>
+        <menu>
+            <cms>
+                <children>
+                    <downloads translate="title" module="downloads">
+                        <title>File Downloads</title>
+                        <depends>
+                            <config>mageworx_cms/downloads/enabled</config>
+                        </depends>
+                        <children>
+                            <files translate="title" module="downloads">
+                                <title>Manage Files</title>
+                                <sort_order>0</sort_order>
+                                <action>mageworx/downloads_files/</action>
+                            </files>
+                            <categories translate="title" module="downloads">
+                                <title>Manage Categories</title>
+                                <sort_order>1</sort_order>
+                                <action>mageworx/downloads_categories/</action>
+                            </categories>
+                            <configuration translate="title" module="downloads">
+                                <title>Configuration</title>
+                                <sort_order>2</sort_order>
+                                <action>adminhtml/system_config/edit/section/mageworx_cms/</action>
+                            </configuration>
+                        </children>
+                    </downloads>
+                </children>
+            </cms>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <mageworx_cms translate="title" module="downloads">
+                                            <title>MageWorx &gt; CMS</title>
+                                            <sort_order>1</sort_order>
+                                            <children>
+                                                <downloads translate="title" module="downloads">
+                                                    <title><![CDATA[File Downloads & Product Attachments]]></title>
+                                                </downloads>
+                                            </children>
+                                        </mageworx_cms>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                        <cms>
+                            <children>
+                                <downloads translate="title" module="downloads">
+                                    <title>File Downloads</title>
+                                    <sort_order>100</sort_order>
+                                    <children>
+                                        <files translate="title">
+                                            <title>Manage Files</title>
+                                            <sort_order>0</sort_order>
+                                        </files>
+                                        <categories translate="title">
+                                            <title>Manage Categories</title>
+                                            <sort_order>1</sort_order>
+                                        </categories>
+                                        <configuration translate="title">
+                                            <title>Configuration</title>
+                                            <sort_order>2</sort_order>
+                                        </configuration>
+                                    </children>
+                                </downloads>
+                            </children>
+                        </cms>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <downloads>
+                    <file>downloads.xml</file>
+                </downloads>
+            </updates>
+        </layout>
+        <events>
+            <catalog_product_save_after>
+                <observers>
+                    <downloads>
+                        <type>singleton</type>
+                        <class>MageWorx_Downloads_Model_Observer</class>
+                        <method>saveProductFiles</method>
+                    </downloads>
+                </observers>
+            </catalog_product_save_after>
+        </events>
+    </adminhtml>
+
+    <default>
+        <mageworx_cms>
+            <downloads>
+                <enabled>1</enabled>
+                <size_precision>1</size_precision>
+                <group_by_category>0</group_by_category>
+                <sort_order>1</sort_order>
+                <display_size>1</display_size>
+                <display_downloads>0</display_downloads>
+                <hide_files>1</hide_files>
+                <block_position>1</block_position>
+                <enable_files_on_category_pages>0</enable_files_on_category_pages>
+                <enable_in_emails>0</enable_in_emails>
+                <name_size>10</name_size>
+                <import_limit>10</import_limit>
+            </downloads>
+        </mageworx_cms>
+    </default>
+</config>

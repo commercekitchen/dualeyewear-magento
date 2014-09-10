@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * MageWorx
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MageWorx EULA that is bundled with
+ * this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.mageworx.com/LICENSE-1.0.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension
+ * for your needs please refer to http://www.mageworx.com/ for more information
+ *
+ * @category   MageWorx
+ * @package    MageWorx_OrdersPro
+ * @copyright  Copyright (c) 2011 MageWorx (http://www.mageworx.com/)
+ * @license    http://www.mageworx.com/LICENSE-1.0.html
+ */
+
+/**
+ * Orders Pro extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_OrdersPro
+ * @author     MageWorx Dev Team
+ */
+-->
+<config>
+    <menu>
+        <cms>
+            <children>
+                <downloads translate="title" module="downloads">
+                    <title>File Downloads</title>
+                    <depends>
+                        <config>mageworx_cms/downloads/enabled</config>
+                    </depends>
+                    <children>
+                        <files translate="title" module="downloads">
+                            <title>Manage Files</title>
+                            <sort_order>0</sort_order>
+                            <action>mageworx/downloads_files/</action>
+                        </files>
+                        <categories translate="title" module="downloads">
+                            <title>Manage Categories</title>
+                            <sort_order>1</sort_order>
+                            <action>mageworx/downloads_categories/</action>
+                        </categories>
+                        <configuration translate="title" module="downloads">
+                            <title>Configuration</title>
+                            <sort_order>2</sort_order>
+                            <action>adminhtml/system_config/edit/section/mageworx_cms/</action>
+                        </configuration>
+                    </children>
+                </downloads>
+            </children>
+        </cms>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <mageworx_cms translate="title" module="downloads">
+                                        <title>MageWorx &gt; CMS</title>
+                                        <sort_order>1</sort_order>
+                                        <children>
+                                            <downloads translate="title" module="downloads">
+                                                <title><![CDATA[File Downloads & Product Attachments]]></title>
+                                            </downloads>
+                                        </children>
+                                    </mageworx_cms>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <cms>
+                        <children>
+                            <downloads translate="title" module="downloads">
+                                <title>File Downloads</title>
+                                <sort_order>100</sort_order>
+                                <children>
+                                    <files translate="title">
+                                        <title>Manage Files</title>
+                                        <sort_order>0</sort_order>
+                                    </files>
+                                    <categories translate="title">
+                                        <title>Manage Categories</title>
+                                        <sort_order>1</sort_order>
+                                    </categories>
+                                    <configuration translate="title">
+                                        <title>Configuration</title>
+                                        <sort_order>2</sort_order>
+                                    </configuration>
+                                </children>
+                            </downloads>
+                        </children>
+                    </cms>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

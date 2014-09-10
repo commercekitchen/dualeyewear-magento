@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+        <reference name="left">
+        	<action method="unsetChild"><name>left.permanent.callout</name></action>
+        </reference>
+
+        <reference name="right">
+            <remove name="catalog.compare.sidebar"></remove>
+            <remove name="right.poll"></remove>
+            <remove name="paypal.partner.right.logo"></remove>
+            <remove name="right.permanent.callout"></remove>
+        </reference>
+    </default>
+    
+    <review_product_list translate="label">
+    <reference name="right">
+        <block type="catalog/product_list_upsell" name="product.info.upsell" as="upsell_products" template="catalog/product/list/upsell.phtml">
+    	    <action method="setColumnCount"><columns>4</columns></action>
+      	 <action method="setItemLimit"><type>upsell</type><limit>4</limit></action>
+        </block>
+    </reference>
+  	 </review_product_list>
+</layout>

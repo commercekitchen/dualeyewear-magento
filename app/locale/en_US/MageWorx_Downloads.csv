@@ -1,0 +1,126 @@
+Action,Action
+Actions,Actions
+Add Category,Add Category
+"Add files in 'New Order' emails","Add files in 'New Order' emails"
+Add new file,Add new file
+Add Tab (if supported by theme),Add Tab (if supported by theme)
+After Product Description,After Product Description
+After Product Price,After Product Price
+All files inside will be moved to Default Category. Are you sure you want to proceed?,All files inside will be moved to Default Category. Are you sure you want to proceed?
+All Store Views,All Store Views
+Allow Guests to Download,Allow Guests to Download
+Allow guests to download,Allow guests to download
+Alphabetical,Alphabetical
+Are you sure you want to do this?,Are you sure you want to do this?
+Attachments,Attachments
+Attrib. Set Name,Attrib. Set Name
+Auto,Auto
+B,B
+Before Product Description,Before Product Description
+Block position,Block position
+Categories does not exist,Categories does not exist
+Category,Category
+Category was successfully deleted,Category was successfully deleted
+Category was successfully saved,Category was successfully saved
+"Category '%s' already exist","Category '%s' already exist"
+Change status,Change status
+Choose Store View,Choose Store View
+Collapse All,Collapse All
+Configuration,Configuration
+Customer Groups,Customer Groups
+Date Added,Date Added
+Date Modified,Date Modified
+Delete,Delete
+Delete Category,Delete Category
+Description,Description
+Disabled,Disabled
+Display File Size,Display File Size
+Display Number of Downloads,Display Number of Downloads
+Done,Done
+Download,Download
+Downloads,Downloads
+Downloads Limit,Downloads Limit
+Edit,Edit
+Edit Category \'%s\',Edit Category \'%s\'
+Edit File \'%s\',Edit File \'%s\'
+Embedded Video Code,Embedded Video Code
+Enabled,Enabled
+Enable files on category pages,Enable files on category pages
+Expand All,Expand All
+File,File
+File do not exist,File do not exist
+File Downloads,File Downloads
+File Downloads & Product Attachments,File Downloads & Product Attachments
+File Downloads Title,File Downloads Title
+File Size Precision,File Size Precision
+File was successfully deleted,File was successfully deleted
+File was successfully saved,File was successfully saved
+Files,Files
+Files were successfully saved,Files were successfully saved
+Files(s) where successfully uploaded,Files(s) where successfully uploaded
+General Information,General Information
+Get Link,Get Link
+Group Files By Category,Group Files By Category
+Hide files,Hide files
+"'How to download' message","'How to download' message"
+ID,ID
+Import uploaded files,Import uploaded files
+items selected,items selected
+KB,KB
+Kilobytes,Kilobytes
+MageWorx &gt; CMS,MageWorx &gt; CMS
+Manage Categories,Manage Categories
+Manage Files,Manage Files
+MB,MB
+Megabytes,Megabytes
+Multi Upload,Multi Upload
+Name,Name
+Name size,Name size
+No,No
+"Please confirm site switching. All data that hasn\'t been saved will be lost","Please confirm site switching. All data that hasn\'t been saved will be lost"
+Please select Category(ies),Please select Category(ies)
+Please select File(s),Please select File(s)
+Please set resource file and link type,Please set resource file and link type
+Price,Price
+Product Block Position,Product Block Position
+Product Downloads,Product Downloads
+Product Downloads Title,Product Downloads Title
+Products,Products
+Qty,Qty
+Quick upload,Quick upload
+Register to Download,Register to Download
+Requested file not available now,Requested file not available now
+Reset downloads,Reset downloads
+Save,Save
+Save And Continue Edit,Save And Continue Edit
+Save Category,Save Category
+Select All,Select All
+Select Visible,Select Visible
+Set,Set
+Short Description,Short Description
+Size,Size
+SKU,SKU
+"Sorry, there was an error getting the file","Sorry, there was an error getting the file"
+Sort Order,Sort Order
+"Starting import files...","Starting import files..."
+Status,Status
+Stores,Stores
+The file can not be uploaded,The file can not be uploaded
+Title,Title
+Total of %d record(s) were successfully deleted,Total of %d record(s) were successfully deleted
+Total of %d record(s) were successfully updated,Total of %d record(s) were successfully updated
+"Total %1$s, imported %2$s files (%3$s%%)...","Total %1$s, imported %2$s files (%3$s%%)..."
+Type,Type
+Unable to find Category to save,Unable to find Category to save
+Unable to find File to save,Unable to find File to save
+Unselect All,Unselect All
+Unselect Visible,Unselect Visible
+Upload Date,Upload Date
+Upload File,Upload File
+URL,URL
+Use Config,Use Config
+Visibility,Visibility
+When uploading video URL embedded video code is required,When uploading video URL embedded video code is required
+Yes,Yes
+"You can use %login% and %title% vars to insert links. &lt;br&gt; Example: &lt;br&gt; You have to %login% or %register% to download this file","You can use %login% and %title% vars to insert links. &lt;br&gt; Example: &lt;br&gt; You have to %login% or %register% to download this file"
+"You have to %login% or %register% to download this file","You have to %login% or %register% to download this file"

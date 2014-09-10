@@ -1,0 +1,84 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This software is designed to work with Magento community edition and
+ * its use on an edition other than specified is prohibited. aheadWorks does not
+ * provide extension support in case of incorrect edition use.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Afptc
+ * @version    1.1.0
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?><?php if ($this->canShow()):?>
+    <form method="post" id="free-product-form" action="<?php echo $this->getPostUrl(); ?>">
+        <div class="block-title">
+            <strong><span><?php echo $this->__('The following item(s) will be added to your cart'); ?></span></strong>
+        </div>
+        <div class="block-content">
+            <?php if (count($this->getProducts()) != 1):?>
+                <p class="block-subtitle">
+                    <?php echo $this->__('Check items to add to the cart or %s', '<a href="javascript:void(0);" onclick="selectAllfreeProducts(this); return false;">' . $this->__("select all") . '</a>'); ?>
+                </p>
+            <?php endif;?>
+            <ul class="free-products-list">
+                <?php foreach ($this->getProducts() as $_product): ?>
+                    <li class="item">
+                        <ul class="product-details">
+                            <?php if (count($this->getProducts()) != 1):?>
+                                <li>
+                                    <input type="checkbox" value="<?php echo $_product->getAfptcItemId();?>" name="products[<?php echo $_product->getAfptcRuleId();?>][]" id="" class="free-product-checkbox  validate-one-required-by-name product-custom-option">
+                                </li>
+                            <?php else:?>
+                                <li>
+                                    <input type="hidden" value="<?php echo $_product->getAfptcItemId();?>" name="products[<?php echo $_product->getAfptcRuleId();?>][]">
+                                </li>
+                            <?php endif;?>
+                            <li>
+                                <div class="product-image">
+                                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
+                                        <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="product-details">
+                                    <p class="product-name">
+                                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>">
+                                            <?php echo $this->helper('catalog/output')->productAttribute($_product, $_product->getName(), 'name') ?>
+                                        </a>
+                                    </p>
+                                    <?php echo $this->getPriceHtml($_product, true) ?>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                <?php endforeach;?>
+            </ul>
+            <div class="popup-left-btn">
+                <button type="submit" title="<?php echo $this->__('Accept') ?>" onclick="initForm().submit();" id='aw-afptc-accept' class="button btn-cart"><span><span><?php echo $this->__('Accept') ?></span></span></button>
+                <button type="button" title="<?php echo $this->__('Decline') ?>" id='aw-afptc-decline' class="button btn-cart"><span><span><?php echo $this->__('Decline') ?></span></span></button>
+            </div>
+            <?php if($this->getDoNotShowAllowed()): ?>
+                <div class="popup-right-btn">
+                    <input type='checkbox' name='aw-afptc-decline-rule' id='aw-afptc-decline-rule'>
+                    <input type='hidden' name='decline_cookie_name' id='decline_cookie_name' value="<?php echo $this->getDeclinePopupCookieName(); ?>"/>
+                    <label for='aw-afptc-decline-rule'><?php echo $this->__('Do not show message box again'); ?></label>
+                </div>
+            <?php endif; ?>
+        </div>
+    </form>
+<?php endif;?>

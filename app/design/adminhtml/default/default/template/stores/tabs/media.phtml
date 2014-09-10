@@ -1,0 +1,61 @@
+<?php
+/**
+ * BelVG LLC.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://store.belvg.com/BelVG-LICENSE-COMMUNITY.txt
+ *
+ /***************************************
+ *         MAGENTO EDITION USAGE NOTICE *
+ *****************************************/
+ /* This package designed for Magento COMMUNITY edition
+ * BelVG does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * BelVG does not provide extension support in case of
+ * incorrect edition usage.
+ /***************************************
+ *         DISCLAIMER   *
+ *****************************************/
+ /* Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future.
+ *****************************************************
+ * @category   Belvg
+ * @package    Belvg_Stores
+ * @copyright  Copyright (c) 2010 - 2012 BelVG LLC. (http://www.belvg.com)
+ * @license    http://store.belvg.com/BelVG-LICENSE-COMMUNITY.txt
+ */?>
+
+<?php
+	$stores = $this->getMedia();
+	$url_preview	= str_replace('/index.php','', $this->getBaseUrl()."media/press/".$stores['file_preview']);
+?>
+<div class="entry-edit">
+	<div class="fieldset" id="general">
+		<div class="hor-scroll">
+			<table cellspacing="0" class="form-list">
+				<tbody>
+					<tr>
+						<td><?php echo $this->getForm()->toHtml(); ?></td>
+					</tr>
+					<?php if(strlen(trim($stores['file_preview']))):?>
+					<tr><td><input id="file_new_preview_del" name="file_new_preview_del" value="on" title="Delete preview file" type="checkbox"/> <?php echo $this->__('delete preview'); ?></td></tr>
+					<?php endif;?>
+					<tr>
+						<td class="value">
+						<?php if(strlen(trim($stores['file_preview']))):?>
+							<div style="float:left; margin-right:10px;">
+							<?php if (fopen("$url_preview", "r"))
+									echo"<img src='$url_preview'>";?>
+							</div>
+						<?php endif;?>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,377 @@
+<?php
+/**
+ * BelVG LLC.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://store.belvg.com/BelVG-LICENSE-COMMUNITY.txt
+ *
+ /***************************************
+ *         MAGENTO EDITION USAGE NOTICE *
+ *****************************************/
+ /* This package designed for Magento COMMUNITY edition
+ * BelVG does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * BelVG does not provide extension support in case of
+ * incorrect edition usage.
+ /***************************************
+ *         DISCLAIMER   *
+ *****************************************/
+ /* Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future.
+ *****************************************************
+ * @category   BelvgSELECT * FROM `belvg_stores` WHERE 1
+ * @package    Belvg_Stores
+ * @copyright  Copyright (c) 2010 - 2012 BelVG LLC. (http://www.belvg.com)
+ * @license    http://store.belvg.com/BelVG-LICENSE-COMMUNITY.txt
+ */?>
+ 
+ <?php 
+    $google_key = "";//$this->getGoogleMapsKey(); 
+    $page_stores = $this->getStoresCollection();
+    $adminstrative_area = $this->getAdministativeArea();
+?>
+    <script>
+		function highlightMarker(marker) {
+			try {
+                if (markers[marker]) {
+                    markers[marker].setImage("<?php echo $this->getSkinUrl()."images/_map_blue.png"?>");
+                    var li_id="item_store_"+marker;
+                    document.getElementById(li_id).style.backgroundColor='#F0F2FF';
+                }  
+            } catch (err) {
+            }
+		}
+		
+		function offhighlightMarker(marker) {
+			try {
+                if (markers[marker]) {
+                    markers[marker].setImage("<?php echo $this->getSkinUrl()."images/_map_red.png"?>");
+                    var li_id="item_store_"+marker;
+                    document.getElementById(li_id).style.backgroundColor='#FFFFFF';
+                }
+            } catch (err){
+            }
+		}
+	</script>
+    <div class="page-title">
+        <h1><?php echo $this->__("Find Store")?></h1>
+    </div>  
+    
+    <div class="page-search-query">
+    <form action="#" method="post" id="find_store_more">
+    <table class="find-table-result-caption">
+    <?php if ($this->getIsAllStores() != 1):?>
+    <tr>
+        <td colspan="5" style="padding-bottom :10px;">
+            <label for="isuserall">
+                <input type="checkbox" id="allstorecheck" name="isuserall" <?php if (Mage::getSingleton('core/app')->getRequest()->getParam('isuserall',-1)!=-1) { echo "checked"; }?>/>
+                <?php echo $this->__('Stores only in Your query Location'); ?>
+            </label>
+        </td>
+    </tr>
+    <?php endif;?>
+    <tr>
+        <td>
+           <label><b><?php echo $this->__("Search for products:")?></b></label>
+        </td>
+        <td>
+           <div class="field" style="position: relative;">
+                <div class="input-box" >
+                    <input id="input_product" class="input-text productin" name="search_product" value="<?php echo $this->getSearchProduct()?>" >
+                </div>
+            </div>
+        </td>
+        <td>
+        <label><b><?php echo $this->__("Near")?></b><?php echo "(".$this->__("Address").", ".$this->__("Neighborhood").", ".$this->__("City").", ".$this->__("State or Zip").") :"?></label>
+        </td>
+        <td>
+           <div class="field">
+                <div class="input-box">
+                    <input type="text" name="search_place" class="input-text" value="<?php echo $this->getSearchPlace()?>">
+                </div>
+           </div>
+        </td>
+        <td>
+           <div class="field">
+                <div class="field field-small">
+                    <label>&nbsp;</label>
+                    <button class="button" onclick="javascript:this.submit();"><span><span>Search</span></span></button>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </table>
+    <input type="hidden" name="isalluserstores" value="" />
+    </form>
+    </div>
+
+<div>
+    <div class="location">
+        <h1><?php echo $this->getPageStoreTitle() ?> &nbsp; | &nbsp; <b> <?php echo $this->__('Your Position: ')?>
+        <?php if (is_array($adminstrative_area)){echo $this->__("Places");} else { echo $adminstrative_area;}?></b></h1>
+    </div>
+    <table class="find-table-result" style="cursor:pointer;">
+        <tr>
+            <td class="find-table-result-content" style="width:60%;">
+                <ul class="find-table-result-list" id="find_table_result">
+                <?php if ($page_stores):?>
+                    <?php $i=1; foreach ($page_stores as $key_store=>$_stores):?>
+                    <?php 
+                        //print_r($_stores);
+						$stores_info[$i]['title']=htmlentities($_stores['title'],ENT_QUOTES,"UTF-8");
+						$stores_info[$i]['lat']=$_stores['lat'];
+						$stores_info[$i]['lng']=$_stores['lng'];
+                        $stores_info[$i]['address']=htmlentities($_stores['country']." ".$_stores['state']." ".$_stores['city']." ".$_stores['address'],ENT_QUOTES,"UTF-8");
+                    ?>
+                    
+                    <li class="item page_it" onMouseOver="highlightMarker(<?php echo $i?>)" onMouseOut="offhighlightMarker(<?php echo $i?>)" id="item_store_<?php echo $i?>">
+                    <table class="result-table-addr">
+                        <tr>
+                            <td style="width: 75%;" id="store_<?php echo $i?>">
+                                <h4 class="title">
+                                <span class="name"><?php echo $i.". "?><b><?php echo $_stores['title']?></b></span>
+                                    <span class="city"><?php echo $_stores['city'];?></span>
+                                </h4>
+                                <address>
+                                    <p><?php echo trim($_stores['country'])." ".trim($_stores['state']).", ".trim($_stores['city']).",<br>".trim($_stores['address']);?>
+                                    <?php
+                                    if ($_stores['zip_code']!="") { echo ", ".$this->__("ZIP Code")." ".$_stores['zip_code'];}
+                                    if ($_stores['phone']!="") { echo ", ".$this->__("Phone").": ".$_stores['phone'];}
+                                    if ($_stores['fax']!="") { echo ", ".$this->__("Fax").": ".$_stores['fax'];}
+                                    ?>
+                                    </p>
+                                    <script type="text/javascript">
+                                        jQuery(document).ready(function() {
+                                            jQuery('#store_<?php echo $i?>').click( function() {
+                                                jQuery('#find_table_result').find('li').removeClass('store_selected');
+                                                jQuery('#item_store_'+<?php echo $i?>).addClass('store_selected');
+                                                map.clearOverlays();
+                                                curr_address = '<?php echo htmlspecialchars(trim($_stores['country'])." ".trim($_stores['state'])." ".trim($_stores['city'])." ".trim($_stores['address']),ENT_QUOTES);?>';
+                                                point = new GLatLng('<?php echo $_stores['lng'] ?>','<?php echo $_stores['lat'] ?>');
+												//geocoder.getLatLng(curr_address,function(point) {
+                                                    map.setCenter(point, 8, G_NORMAL_MAP);
+                                                    map.openInfoWindowHtml(point, '<h3><?php echo htmlspecialchars($_stores['title'],ENT_QUOTES) ?></h3>'+
+                                                                                  '<div style="float:left">'+
+																				  '<span><strong><?php echo $this->__('Location:') ?></strong></span>'+
+                                                                                  '<p><?php echo htmlspecialchars(trim($_stores['country'])." ".trim($_stores['state']).", ".trim($_stores['city']).",".trim($_stores['address']),ENT_QUOTES);?><br>'+
+                                                                                  '<?php if ($_stores['zip_code']!="") { echo $this->__("ZIP Code").": ".$_stores['zip_code'].'<br>';} if ($_stores['phone']!="") { echo $this->__("Phone").": ".$_stores['phone'].'<br>';} if ($_stores['fax']!="") { echo $this->__("Fax").": ".$_stores['fax'].'<br>';} ?>'+
+                                                                                  '</p></div>'
+																				  <?php if ($_stores['file_preview']!=""): ?>
+																				  +
+                                                                                  '<div style="float:left"><img class="img_prev" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)."press/".substr($_stores['file_preview'],4)?>" alt=""></img></div>'
+																				  <?php endif;?>
+																				  );
+                                                    showAddress(<?php echo $_stores['lat'] ?>,<?php echo $_stores['lng'] ?>,curr_address, '<?php echo htmlspecialchars($_stores['title'],ENT_QUOTES) ?>', <?php echo $key_store ?>, true);
+                                                //});
+                                            setTimeout( function() { map.setZoom(15) }, 500);        
+                                            });
+                                        });
+                                    </script>  
+                                </address>
+                                <dist>
+                                <?php if (!$this->getKmMiles()): ?>
+                                <p><?php echo "Distance: ".((int)$_stores['distance']/1000)." km"?></p>
+                                <?php else: ?>
+                                <p><?php echo "Distance: ".round((int)$_stores['distance']/1609.344, 3)." miles"?></p>
+                                <?php endif; ?>
+                                </dist>
+                            </td>
+                            <?php if ($_stores['file_preview']!=""): ?>
+                            <td class="picture_size">
+                            <span><a id="store_prev_<?php echo $i?>" title="<?php echo addslashes(($_stores['picture_desc']));?>" href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)."press/".$_stores['file_preview']?>" class="pre_sore_new"><img class="img_prev" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)."press/".substr($_stores['file_preview'],4)?>" alt=""></img></a>
+                            </span>
+                            </td>
+                            <?php endif;?>
+                        </tr>
+                    </table>
+						
+					</li>
+					<?php $i++; endforeach;?>
+				<?php else:?>
+					<li class="item page_it">
+                    <p><?php echo $this->__("Sorry").", ".$this->__("Stores not found") ?>. <?php echo $this->getHtmlErrors()?></p></li>
+				<?php endif;?>
+				</ul>
+			</td>
+			<td class="find-table-result-map">
+				<div>
+					<div id="mapgoogle" style="width: 450px; height: 570px;"></div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="toolbar">
+	<label style="text-align:center;">
+		<strong>
+			<table class="pager-cookie">
+			<tr> 
+				<td><label id="inform"><?php echo $this->__('Count'); ?></label></td>
+				<td><label id="pagination"><?php echo $this->__('1 Page'); ?></label></td>
+			</tr>
+			</table>
+		</strong>
+	</label>
+</div>
+<?php $li_counter = 1;?>
+<!--Contents start-->
+
+      <!-- GOOGLE Part1 START -->
+	  <?php 
+		$google_lang = Mage::Helper('stores')->getLoacaleUser(); 
+		$mage_locale = Mage::app()->getLocale()->getLocaleCode();
+		if (!empty($mage_locale)){
+			$google_locale = explode("_", $mage_locale);
+			if (empty($google_locale)){
+				$google_locale = $mage_locale;
+			}	
+			else {
+				$google_locale = $google_locale[0]; 
+			}	
+		} else {
+			$google_locale = 'en'; 
+		}	
+	  ?>
+      <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<?php echo $google_key?>&hl=<?php echo $google_locale ?>" type="text/javascript" encoding="utf-8"></script>
+      <!-- GOOGLE Part1 END -->
+	  <!-- GOOGLE Part2 START -->
+      
+      <script type="text/javascript">
+      //<![CDATA[
+
+        jQuery(document).ready(function(){        
+            
+            jQuery("#input_product").autocomplete("<?php echo $this->getUrl('stores/front/productsload');?>", {
+                deferRequestBy: 300,
+                maxHeight: 200,
+                selectFirst: true,
+                noCache: false
+            }); 
+            
+            jQuery("a.pre_sore_new").fancybox({
+                'titlePosition' : 'inside'
+            });  
+            
+            Geoload();
+            
+            jQuery("#find_table_result").quickPager( {
+                    pageSize: storePageSize,
+                    currentPage: 1,
+                    pagerLocation: "before"
+                }); 
+            
+        });
+        
+	    var bounds = new GLatLngBounds();
+		var markers = new Array();
+        
+		var globalAddress = new Array();
+		var storePageSize = 5;
+		var storesCount = 0;
+		
+		var pntx=0;
+		var pnty=0;
+		var center = new GLatLng(pnty, pntx);
+        var map = new GMap2(document.getElementById("mapgoogle"));
+		
+		var map_ctrl=new GLargeMapControl3D();
+		var map_type_ctrl=new GMapTypeControl();
+		var map_scale_ctrl=new GScaleControl();
+		
+		map.addControl(map_ctrl);
+        map.addControl(map_type_ctrl);
+        map.addControl(map_scale_ctrl);
+        
+        map.setCenter(center, 3, G_NORMAL_MAP);
+
+		var geocoder = new GClientGeocoder();
+
+		function Geoload() {
+            if (GBrowserIsCompatible()) {
+				var address='<?php echo json_encode($stores_info); ?>'.evalJSON();
+				globalAddress=address;
+				
+				var KEYS_ADDRESS = Object.keys(address);
+				var count=KEYS_ADDRESS.size();
+				storesCount=count;
+				
+				var to = 0;
+				if (storesCount<storePageSize) {
+					to=storesCount;
+				} else {
+					to=storePageSize;
+				}
+				try{
+					for (var i=1; i<=to; i++){
+						showAddress(address[i].lat,address[i].lng,address[i].address,i+'. '+address[i].title,i);
+					} 
+				} catch(error) {
+                    alert(error.description);
+                }
+				jQuery("#find_table_result").quickPager( {
+					pageSize: storePageSize,
+					currentPage: 1,
+					pagerLocation: "before"
+				});
+			}
+		}
+		
+		function showAddress(lat,lng,address,title_place,from,tooltip) {
+            tooltip = tooltip || false;
+			
+			point = new GLatLng(lng, lat);
+			//geocoder.getLatLng(address,function(point) {
+			if (!point) {
+				alert(address + " not found");
+			} else {
+				var blueIcon = new GIcon(G_DEFAULT_ICON);
+				blueIcon.image = "<?php echo $this->getSkinUrl()."images/_map_red.png"?>";
+				
+				markerOptions = { title:title_place, icon:blueIcon};
+				var marker = new GMarker(point,markerOptions);
+				marker['id']=from;
+				marker['address']=address;
+				markers[from]=marker;
+				
+				GEvent.addListener(marker, "click", function() {
+					html = '<h3>'+title_place+'</h3><br>'+
+						   '<span>'+address+'</span>';
+					marker.openInfoWindowHtml(html);
+				});
+				
+				GEvent.addListener(marker, "mouseover", function() {
+					var li_id="item_store_"+marker['id'];
+					document.getElementById(li_id).style.backgroundColor='#F0F2FF';
+					marker.setImage("<?php echo $this->getSkinUrl()."images/_map_blue.png"?>");
+				});
+				GEvent.addListener(marker, "mouseout", function() {
+					var li_id="item_store_"+marker['id'];
+					document.getElementById(li_id).style.backgroundColor='#FFFFFF';
+					marker.setImage("<?php echo $this->getSkinUrl()."images/_map_red.png"?>");
+				});
+
+				map.addOverlay(marker);
+				bounds.extend(point);
+				map.setZoom(map.getBoundsZoomLevel(bounds));
+				map.setCenter(bounds.getCenter());
+				
+				//marker.openInfoWindowHtml("Marker Info");
+				
+				/*
+				var infowindow = new google.maps.InfoWindow({
+					content: 'Info About Point'
+				});
+				
+				if (tooltip) {
+					infowindow.open(map,marker);
+				}
+				*/
+			}
+			//}
+			//);
+		}
+    </script>

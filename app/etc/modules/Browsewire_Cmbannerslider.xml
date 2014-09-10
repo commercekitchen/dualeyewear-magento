@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Browsewire_Cmbannerslider>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Browsewire_Cmbannerslider>
+    </modules>
+</config> 

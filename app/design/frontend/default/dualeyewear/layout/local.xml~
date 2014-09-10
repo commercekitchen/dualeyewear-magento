@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+        <reference name="left">
+        	<action method="unsetChild"><name>left.permanent.callout</name></action>
+        </reference>
+
+        <reference name="right">
+            <remove name="catalog.compare.sidebar"></remove>
+            <remove name="right.poll"></remove>
+            <remove name="paypal.partner.right.logo"></remove>
+            <remove name="right.permanent.callout"></remove>
+        </reference>
+    </default>
+</layout>

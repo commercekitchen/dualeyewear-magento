@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+ * MageWorx
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MageWorx EULA that is bundled with
+ * this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.mageworx.com/LICENSE-1.0.html
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@mageworx.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension
+ * for your needs please refer to http://www.mageworx.com/ for more information
+ * or send an email to sales@mageworx.com
+ *
+ * @category   MageWorx
+ * @package    MageWorx_Downloads
+ * @copyright  Copyright (c) 2009 MageWorx (http://www.mageworx.com/)
+ * @license    http://www.mageworx.com/LICENSE-1.0.html
+ */
+ 
+/**
+ * Downloads extension
+ *
+ * @category   MageWorx
+ * @package    MageWorx_Downloads
+ * @author     MageWorx Dev Team <dev@mageworx.com>
+ */
+-->
+<config>
+    <sections>
+        <mageworx_cms translate="label" module="mageworx">
+            <label>CMS</label>
+            <tab>mageworx</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <downloads translate="label" module="downloads">
+                    <label><![CDATA[File Downloads & Product Attachments]]>
+                    </label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+							
+                        <display_size translate="label">
+                            <label>Display File Size</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </display_size>
+							
+                        <size_precision translate="label">
+                            <label>File Size Precision</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>downloads/filesize</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </size_precision>
+
+                        <group_by_category translate="label">
+                            <label>Group Files By Category</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </group_by_category>
+
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>downloads/sortorder</source_model>
+                            <sort_order>45</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sort_order>
+
+                        <how_to_download_message translate="label comment">
+                            <label>'How to download' message</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>You can use %login% and %title% vars to insert links. &lt;br&gt; Example: &lt;br&gt; You have to %login% or %register% to download this file</comment>
+                        </how_to_download_message>
+
+                        <name_size translate="label">
+                            <label>Name size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </name_size>
+
+                        <enable_files_on_category_pages translate="label">
+                            <label>Enable files on category pages</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_files_on_category_pages>
+
+                        <enable_in_emails translate="label">
+                            <label>Add files in 'New Order' emails</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>75</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_in_emails>
+							
+                        <display_downloads translate="label">
+                            <label>Display Number of Downloads</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </display_downloads>
+
+                        <hide_files translate="label">
+                            <label>Hide files</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </hide_files>
+							
+                        <block_position translate="label">
+                            <label>Product Block Position</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>downloads/blockposition</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </block_position>
+
+                        <product_downloads_title translate="label">
+                            <label>Product Downloads Title</label>
+                            <comment>Used for product pages</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_downloads_title>
+                            
+                        <file_downloads_title translate="label">
+                            <label>File Downloads Title</label>
+                            <comment>Used for static blocks and cms pages</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </file_downloads_title>
+
+                        <import_limit translate="label">
+                            <label>Number of Files for One-Time Processing during Import</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import_limit>
+
+                        <import_files translate="label">
+                            <label>Import uploaded files</label>
+                            <frontend_model>mageworx/downloads_system_config_import</frontend_model>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                        </import_files>
+                    </fields>
+                </downloads>
+            </groups>
+        </mageworx_cms>
+    </sections>
+</config>

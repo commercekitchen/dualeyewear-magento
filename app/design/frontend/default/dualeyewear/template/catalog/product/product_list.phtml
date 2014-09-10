@@ -1,0 +1,26 @@
+<ul class="level0">
+<?php
+$cat_collection = Mage::getModel("catalog/category")->load($this->getCatId());
+$collection = $cat_collection->getProductCollection();
+$collection->addAttributeToSelect('name');
+$collection->addAttributeToSelect('url');
+$collection->addAttributeToSelect('visibility');
+$collection->addAttributeToSort('name', 'ASC');
+$category = Mage::getModel('catalog/category')->load(3);
+$categorys = Mage::getModel('catalog/category')->load(4);
+?>
+ 
+<li><a href="<?php echo $category->getUrl();?>"><span><?php echo $this->__('All Styles');?></span></a></li>
+<li><a href="<?php echo $categorys->getUrl();?>"><span><?php echo $this->__('Discontinued Styles');?></span></a></li>
+			<?php foreach ($collection as $product) {
+        		if($product->getVisibility()>1){
+        	?>   
+<?php 
+                    $prodid = $product->getId();
+                    if($prodid != 34 && $prodid != 45 && $prodid != 116):        
+               ?>  
+        		<li><a href="<?php echo $product->getProductUrl();?>"><span><?php echo $product->getName()?></span></a></li>
+                        <?php endif; ?>
+    		<?php } }?>
+</ul>
+

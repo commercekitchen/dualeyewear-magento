@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <promo>
+            <children>               
+                <awafptc translate="title">
+                    <title>Add Free Product To Cart</title>
+                    <sort_order>150</sort_order>
+                    <children>
+                        <rules translate="title">
+                            <title>Rules</title>
+                            <sort_order>1</sort_order>
+                            <action>awafptc_admin/adminhtml_rules</action>
+                        </rules>
+                        <config translate="title">
+                            <title>Settings</title>
+                            <sort_order>15</sort_order>
+                            <action>adminhtml/system_config/edit/section/awafptc</action>
+                        </config>                                                              
+                    </children>
+                </awafptc>
+            </children>
+        </promo>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <promo>
+                        <children>               
+                            <awafptc translate="title">
+                                <title>Add Free Product To Cart</title>
+                                <sort_order>150</sort_order>
+                                <children>
+                                    <rules translate="title">
+                                        <title>Rules</title>
+                                        <sort_order>1</sort_order>
+                                        <action>awafptc_admin/adminhtml_rules</action>
+                                    </rules>
+                                    <config translate="title">
+                                        <title>Settings</title>
+                                        <sort_order>15</sort_order>
+                                        <action>adminhtml/system_config/edit/section/awafptc</action>
+                                    </config>                                                              
+                                </children>
+                            </awafptc>
+                        </children>
+                    </promo>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <awafptc translate="title">
+                                        <title>aheadWorks - Add Free Product To Cart</title>
+                                    </awafptc>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

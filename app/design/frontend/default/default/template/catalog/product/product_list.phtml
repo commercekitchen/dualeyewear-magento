@@ -1,0 +1,15 @@
+<ul class="level0">
+<?php
+$cat_collection = Mage::getModel("catalog/category")->load($this->getCatId());
+$collection = $cat_collection->getProductCollection();
+$collection->addAttributeToSelect('name');
+$collection->addAttributeToSelect('url');
+$collection->addAttributeToSelect('visibility');
+
+    foreach ($collection as $product) {
+        if($product->getVisibility()>1){
+        ?>
+        <li><a href="<?php echo $product->getProductUrl();?>"><span><?php echo $product->getName()?></span></a></li>
+    <?php } }?>
+</ul>
+

@@ -1,0 +1,266 @@
+<?php
+/**
+ * MageWorx
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MageWorx EULA that is bundled with
+ * this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.mageworx.com/LICENSE-1.0.html
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@mageworx.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension
+ * for your needs please refer to http://www.mageworx.com/ for more information
+ * or send an email to sales@mageworx.com
+ *
+ * @category   design_default
+ * @package    MageWorx_Downloads
+ * @copyright  Copyright (c) 2009 MageWorx (http://www.mageworx.com/)
+ * @license    http://www.mageworx.com/LICENSE-1.0.html
+ */
+
+/**
+ * Downloads extension
+ *
+ * @category   design_default
+ * @package    MageWorx_Downloads
+ * @author     MageWorx Dev Team <dev@mageworx.com>
+ */
+
+$categories = Mage::getSingleton('downloads/categories')->getCategoriesList();
+?>
+<style>
+    <!--
+    .downloads td.label, .downloads td.label label {
+        width: auto;
+    }
+
+    .x-tree-node .leaf .x-tree-node-icon {
+        background-image: url(<?php echo $this->getSkinUrl('images/downloads/icon_file.png') ?>);
+    }
+
+    #upload_form {
+        padding: 20px 10px;
+    }
+
+    #upload_form .validation-advice {
+        margin: 3px 0 10px 200px;
+    }
+
+    #upload_form .upload-button {
+        text-align: right;
+        width: 480px;
+    }
+
+    #upload_form select {
+        width: 280px;
+    }
+
+    #upload_form input {
+        width: 274px;
+    }
+
+    #upload_form textarea {
+        width: 274px;
+        height: 150px;
+    }
+
+    #upload_form .field-row label {
+        width: 200px;
+    }
+    //-->
+</style>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Attachments') ?></h4>
+    </div>
+    <fieldset id="group_fields_downloads">
+        <table cellspacing="0" class="form-list downloads">
+            <tbody>
+            <?php echo $this->getTitleHtml() ?>
+            </tbody>
+        </table>
+        <div class="tree-actions">
+            <a href="#" onclick="tree.collapseAll(); return false;"><?php echo $this->__('Collapse All') ?></a> | <a href="#" onclick="tree.expandAll(); return false;"><?php echo $this->__('Expand All') ?></a>
+        </div>
+        <input type="hidden" name="product[downloads_files_ids]" id="downloads-product-files"
+               value="<?php echo $this->getIdsString() ?>">
+
+        <div id="files-categories" class="tree" style="width: 0;"></div>
+        <div class="add_file_button" id="fd_quick_upload_button">
+            <button type="button" onclick="showUploadForm()"><?php echo $this->__('Add new file(s)') ?></button>
+        </div>
+
+        <div id="upload_form" style="width: 532px;">
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Quick upload') ?></h4>
+            </div>
+            <fieldset id="group_fields_quickupload">
+                <?php echo $this->getUploadForm(); ?>
+                <div class="upload-button">
+                    <button type="button" onclick="uploadFile()"><?php echo $this->__('Upload File'); ?></button>
+                </div>
+            </fieldset>
+        </div>
+    </fieldset>
+</div>
+
+<?php if ($this->getTreeJson()): ?>
+<script type="text/javascript">
+    <!--
+
+    Ext.EventManager.onDocumentReady(function () {
+
+        showUploadForm();
+
+        var categoryLoader = new Ext.tree.TreeLoader({
+            dataUrl:'<?php echo $this->getLoadTreeUrl()?>'
+        });
+
+        categoryLoader.createNode = function (config) {
+            config.uiProvider = Ext.tree.CheckboxNodeUI;
+            var node;
+            if (config.children && !config.children.length) {
+                delete(config.children);
+
+                node = new Ext.tree.AsyncTreeNode(config);
+            } else {
+                node = new Ext.tree.TreeNode(config);
+            }
+            return node;
+        };
+
+        categoryLoader.on("beforeload", function (treeLoader, node) {
+            treeLoader.baseParams.category = node.attributes.id;
+        });
+
+        categoryLoader.on("load", function (treeLoader, node, config) {
+            varienWindowOnload();
+        });
+
+        tree = new Ext.tree.TreePanel('files-categories', {
+            animate:false,
+            loader:categoryLoader,
+            enableDD:false,
+            containerScroll:true,
+            selModel:new Ext.tree.CheckNodeMultiSelectionModel(),
+            rootVisible:false
+        });
+
+        tree.on('check', function (node) {
+            if (!node.attributes.isParent && node.attributes.checked) {
+                categoryAdd(node.id);
+            } else {
+                categoryRemove(node.id);
+            }
+        }, tree);
+
+        var root = new Ext.tree.TreeNode({
+            draggable:false,
+            id:'root-id',
+            disabled:true
+        });
+
+        tree.setRootNode(root);
+        bildCategoryTree(root, <?php echo $this->getTreeJson() ?>);
+
+        tree.addListener('click', categoryClick.createDelegate(this));
+
+        tree.render();
+        root.expand();
+    });
+
+    function bildCategoryTree(parent, config) {
+        if (!config) return null;
+
+        if (parent && config && config.length) {
+            for (var i = 0; i < config.length; i++) {
+                if (!config[i].isParent) {
+                    config[i].uiProvider = Ext.tree.CheckboxNodeUI;
+                }
+                var node;
+                var _node = Object.clone(config[i]);
+                if (_node.children && !_node.children.length) {
+                    delete(_node.children);
+                    node = new Ext.tree.AsyncTreeNode(_node);
+                } else {
+                    node = new Ext.tree.TreeNode(config[i]);
+                }
+                parent.appendChild(node);
+                node.loader = node.getOwnerTree().loader;
+                if (config[i].children) {
+                    bildCategoryTree(node, config[i].children);
+                }
+            }
+        }
+    }
+
+    function categoryClick(node, e) {
+        if (node.disabled) {
+            return;
+        }
+        if (!node.attributes.isParent) {
+            node.getUI().check(!node.getUI().checked());
+        }
+        varienElementMethods.setHasChanges(Event.element(e), e);
+    }
+
+    function categoryAdd(id) {
+        var ids = $('downloads-product-files').value.split(',');
+        ids.push(id);
+        $('downloads-product-files').value = ids.join(',');
+    }
+
+    function categoryRemove(id) {
+        var ids = $('downloads-product-files').value.split(',');
+        // bug #7654 fixed
+        while (-1 != ids.indexOf(id)) {
+            ids.splice(ids.indexOf(id), 1);
+        }
+        $('downloads-product-files').value = ids.join(',');
+    }
+
+    function showUploadForm() {
+        if ($('upload_form')) {
+            $('upload_form').toggle();
+
+            $$('#upload_form input, #upload_form select, #upload_form textarea').each(function (el) {
+                if (!el.disabled && $('upload_form').getStyle('display') == 'none') {
+                    el.disable();
+                } else {
+                    el.enable();
+                }
+            });
+        }
+    }
+
+    function uploadFile() {
+        var requestParams = [];
+        $$('#upload_form input, #upload_form select, #upload_form textarea').each(function (el) {
+            requestParams[el.name] = el.value;
+        });
+
+        validator = new Validation('upload_form');
+        if (!validator.validate()) {
+            return false;
+        }
+
+        var url = '<?php echo Mage::getUrl('mageworx/downloads_files/quickSave', array('product_id' => Mage::app()->getRequest()->getParam('id'))) ?>';
+        new Ajax.Request(url, {
+            method:'post',
+            parameters:requestParams,
+            onSuccess:function (transport) {
+                setLocation('<?php echo Mage::getUrl('*/*/*', array('tab' => 'product_info_tabs_downloads_attachments', 'id' => Mage::app()->getRequest()->getParam('id'))); ?>');
+            }
+        });
+    }
+    //-->
+</script>
+<?php endif; ?>

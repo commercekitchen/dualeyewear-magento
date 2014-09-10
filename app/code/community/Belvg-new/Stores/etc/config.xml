@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BelVG LLC.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://store.belvg.com/BelVG-LICENSE-COMMUNITY.txt
+ *
+ /***************************************
+ *         MAGENTO EDITION USAGE NOTICE *
+ *****************************************/
+ /* This package designed for Magento COMMUNITY edition
+ * BelVG does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * BelVG does not provide extension support in case of
+ * incorrect edition usage.
+ /***************************************
+ *         DISCLAIMER   *
+ *****************************************/
+ /* Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future.
+ *****************************************************
+ * @category   Belvg
+ * @package    Belvg_Stores
+ * @copyright  Copyright (c) 2010 - 2012 BelVG LLC. (http://www.belvg.com)
+ * @license    http://store.belvg.com/BelVG-LICENSE-COMMUNITY.txt
+   */-->
+
+    <config>
+        <modules>
+            <Belvg_Stores>
+                <version>1.0.4</version>
+            </Belvg_Stores>
+        </modules>
+        <blocks>
+                <stores><class>Belvg_Stores_Block</class></stores>
+        </blocks>
+        <admin>
+            <routers>
+                <stores_admin>
+                    <use>admin</use>
+                    <args>
+                        <module>Belvg_Stores</module>
+                        <frontName>stores_admin</frontName>
+                    </args>
+                </stores_admin>
+            </routers>
+        </admin>
+        <frontend>
+			<routers>
+            <stores>
+                <use>standard</use>
+                <args>
+                    <module>Belvg_Stores</module>
+                    <frontName>stores</frontName>
+                </args>
+            </stores>
+        </routers>
+            <layout>
+                <updates>
+                    <stores>
+                        <file>stores.xml</file>
+                    </stores>
+                </updates>
+            </layout>
+            <translate>
+                <modules>
+                    <Belvg_Stores>
+                        <files>
+                            <default>Belvg_Stores.csv</default>
+                        </files>
+                    </Belvg_Stores>
+                </modules>
+            </translate>  
+        </frontend>
+        <adminhtml>
+            <layout>
+                <updates>
+                    <stores>
+                        <file>stores.xml</file>
+                    </stores>
+                </updates>
+             </layout>
+        </adminhtml>   
+        <global>
+            <resources>
+                <stores_setup>
+                    <setup>
+                        <module>Belvg_Stores</module>
+                    </setup>
+                    <connection>
+                        <use>core_setup</use>
+                    </connection>
+                </stores_setup>
+                <stores_write>
+                    <connection><use>core_write</use></connection>
+                </stores_write>
+                <stores_read>
+                    <connection><use>core_read</use></connection>
+                </stores_read>
+            </resources>
+            <blocks>
+                <stores>
+                    <class>Belvg_Stores_Block</class>
+                </stores>
+            </blocks>
+            <models>
+                <stores>
+                    <class>Belvg_Stores_Model</class>
+                    <resourceModel>stores_mysql4</resourceModel>
+                </stores>
+                <stores_mysql4>
+                    <class>Belvg_Stores_Model_Mysql4</class>
+                    <entities>
+                        <state>
+                            <table>belvg_stores</table>
+                        </state>
+                    </entities>
+                </stores_mysql4>
+            </models>
+            <helpers>
+                <stores>
+                    <class>Belvg_Stores_Helper</class>
+                </stores>
+            </helpers>
+
+			<rewrite>
+                <stores_front_pages>
+                    <from><![CDATA[#^/stores/pages/#]]></from>
+                    <to>/stores/front/pages/</to>
+                </stores_front_pages>
+              </rewrite>
+        </global>
+</config>

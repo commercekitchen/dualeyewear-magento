@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <cmbannerslider_adminhtml_cmbannerslider_index>
+        <reference name="content">
+            <block type="cmbannerslider/adminhtml_cmbannerslider" name="cmbannerslider" />
+        </reference>
+    </cmbannerslider_adminhtml_cmbannerslider_index>
+</layout>

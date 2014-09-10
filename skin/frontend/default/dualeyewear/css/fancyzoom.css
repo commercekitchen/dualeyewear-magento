@@ -1,0 +1,87 @@
+#zoom {
+
+  z-index: 10000; position:relative; border:7px solid #e2e2e1; background:#fff url(../images/fancyzoom/product_details_zoomprd-img.jpg) 0 0 repeat-y;
+}
+.product-base-image{ border:1px solid #b4c1c8; border-bottom: 6px solid #0e6a9b;}
+#fancy-zoom-content{ padding:25px 0px 18px; }
+#fancy-zoom-content-gallery{ margin:0  auto; width:370px;}
+.fancy-zoom-gallery-active{border:1px solid #d2d2d2; display:block; float:left; margin:6px 3px 0 3px; }
+#fancy-zoom-table {
+  border-collapse: collapse;
+  width: 100%;
+  height: 100%;
+}
+
+#fancy-zoom-table .tl {
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+}
+
+#fancy-zoom-table .tm {
+  height: 20px;
+  overflow: hidden;
+}
+
+#fancy-zoom-table .tr {
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+}
+#fancy-zoom-table tr td{ text-align:center;}
+#fancy-zoom-table .ml {
+  width: 20px;
+  overflow: hidden;
+}
+
+#fancy-zoom-table .mm {
+  background: #fff;
+  vertical-align: top;
+  padding: 10px;
+}
+
+#fancy-zoom-table .mr {
+  width: 20px;
+  overflow: hidden;
+}
+
+#fancy-zoom-table .bl {
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+}
+
+#fancy-zoom-table .bm {
+  height: 20px;
+  overflow: hidden;
+}
+
+#fancy-zoom-table .br {
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+}
+
+#fancy-zoom-x {
+  position: absolute;
+  top: -21px;
+  right: -24px;
+}
+
+#fancy-zoom-x img {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+#fancy-zoom-gallery {
+  display: none;
+}
+
+/*
+ * Fix for default theme
+ */
+.product-view .product-img-box .more-views li a {
+  width: auto;
+  height: auto;
+}

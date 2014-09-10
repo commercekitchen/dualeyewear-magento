@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">     
+    <awafptc_admin_adminhtml_rules_index>
+        <reference name="content">
+            <block type="awafptc/adminhtml_rules" name="awafptc.rules" />
+        </reference>
+    </awafptc_admin_adminhtml_rules_index>   
+    <awafptc_admin_adminhtml_rules_edit>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/aw_afptc/styles.css</stylesheet></action>
+            <action method="setCanLoadExtJs"><flag>1</flag></action>
+            <action method="setCanLoadRulesJs"><flag>1</flag></action>
+        </reference>       
+        <reference name="content">
+             <block type="awafptc/adminhtml_rules_edit" name="awafptc.rules.edit" />
+        </reference>
+        <reference name="left">
+             <block type="awafptc/adminhtml_rules_edit_tabs" name="awafptc.rules.edit.tabs" />
+        </reference>        
+    </awafptc_admin_adminhtml_rules_edit>
+</layout>

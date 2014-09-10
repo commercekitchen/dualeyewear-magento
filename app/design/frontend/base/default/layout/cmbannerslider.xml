@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<layout version="1.0.3">
+    <default>
+    </default>
+    <cmbannerslider_index_index>
+        <reference name="content">
+            <block type="cmbannerslider/cmbannerslider" name="cmbannerslider" template="cmbannerslider/cmbannerslider.phtml" />
+        </reference>
+    </cmbannerslider_index_index>
+</layout> 

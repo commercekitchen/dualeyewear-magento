@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<config>
+	<sections>
+		<cmbannerslider translate="label" module="cmbannerslider">
+			<label>Banner Slider</label>
+			<tab>general</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>999</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>0</show_in_website>
+			<show_in_store>0</show_in_store>
+			<groups>
+				<settings translate="label">
+				<label>Banner Slider Settings</label>
+				<frontend_type>text</frontend_type>
+				<sort_order>1</sort_order>
+				<show_in_default>1</show_in_default>
+				<show_in_website>0</show_in_website>
+				<show_in_store>0</show_in_store>
+					<fields>
+						<time_delay translate="label, comment">
+							<label>Time Display per Image</label>
+							<comment><![CDATA[in milli-second]]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</time_delay>
+						<show_description translate="label, comment">
+							<label>Show description</label>
+							<comment><![CDATA[show description of image]]></comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</show_description>
+						<width translate="label, comment">
+							<label>Width</label>
+							<comment><![CDATA[in pixels]]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</width>
+						<height translate="label, comment">
+							<label>Height</label>
+							<comment><![CDATA[in pixels]]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</height>
+						<opacity translate="label, comment">
+							<label>Opacity</label>
+							<comment><![CDATA[opacity of title and navigation]]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</opacity>
+						<effect translate="label, comment">
+							<label>Effect</label>
+							<comment><![CDATA[effect for banner appearance]]></comment>
+							<frontend_type>select</frontend_type>
+							<source_model>cmbannerslider/system_config_source_dropdown_values</source_model>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</effect>
+						<navigation translate="label, comment">
+							<label>Navigation Links</label>
+							<comment><![CDATA[show prev next and buttons]]></comment>
+							<frontend_type>select</frontend_type>
+							<source_model>cmbannerslider/system_config_source_dropdown_ValuesTrueFalse</source_model>
+							<sort_order>7</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</navigation>
+						<hoverpause translate="label, comment">
+							<label>Hover-Pause</label>
+							<comment><![CDATA[pause on hover]]></comment>
+							<frontend_type>select</frontend_type>
+							<source_model>cmbannerslider/system_config_source_dropdown_ValuesTrueFalse</source_model>
+							<sort_order>8</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</hoverpause>
+
+					</fields>
+				</settings>
+			</groups>
+		</cmbannerslider>
+	</sections>
+</config>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default> 
+        <reference name="head">
+            <action method="addCss" ifconfig="awafptc/general/enable"><stylesheet>css/aw_afptc/styles.css</stylesheet></action>
+            <action method="addJs" ifconfig="awafptc/general/enable"><js>aw_afptc/popup.js</js></action>
+            <block type="core/template" template="aw_afptc/init_popup.phtml" name="awafptc.init" />
+        </reference>
+        <reference name="before_body_end">
+            <block type="core/template" template="aw_afptc/popup_container.phtml" name="awafptc.popup.container" />
+        </reference>
+    </default>
+    <awafptc_popup>
+        <block type="awafptc/popup" name="awafptc.popup" template="aw_afptc/popup.phtml"/>
+    </awafptc_popup>
+</layout>

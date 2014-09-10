@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sass-stdlib">
+    <CLASSES />
+    <SOURCES>
+      <root url="file:$PROJECT_DIR$/../../../../../../../10.16.16.183/../C:/Program Files/JetBrains/PhpStorm 5.0.3/plugins/sass/lib/stubs/sass_functions.scss" />
+      <root url="file:$PROJECT_DIR$/../../../../../../../$PROJECT_DIR$/../../../../../../../$APPLICATION_HOME_DIR$/plugins/sass/lib/stubs/sass_functions.scss" />
+    </SOURCES>
+  </library>
+</component>

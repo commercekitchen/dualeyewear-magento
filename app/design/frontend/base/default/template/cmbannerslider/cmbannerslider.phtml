@@ -1,0 +1,55 @@
+<?php
+/**
+ * @author Ocodewire (ocodewire.com)
+ * @copyright  Copyright (c)  ocodewire
+ * @version : 1.0.2
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+	$bannerCollection = Mage::getModel('cmbannerslider/cmbannerslider')->getCollection();
+ 	$configData = Mage::getStoreConfig('cmbannerslider');
+	$i = 0;
+	$timeDelay = Mage::getStoreConfig('cmbannerslider/settings/time_delay',Mage::app()->getStore());
+	$showdesc  = Mage::getStoreConfig('cmbannerslider/settings/show_description',Mage::app()->getStore());
+	$width  = Mage::getStoreConfig('cmbannerslider/settings/width',Mage::app()->getStore());
+	$height  = Mage::getStoreConfig('cmbannerslider/settings/height',Mage::app()->getStore());
+	$opacity  = Mage::getStoreConfig('cmbannerslider/settings/opacity',Mage::app()->getStore());
+	$effect  = Mage::getStoreConfig('cmbannerslider/settings/effect',Mage::app()->getStore());
+	$navigation  = Mage::getStoreConfig('cmbannerslider/settings/navigation',Mage::app()->getStore());
+	$hoverpause  = Mage::getStoreConfig('cmbannerslider/settings/hoverpause',Mage::app()->getStore());
+?>
+
+<script type="text/javascript" src="<?php echo $this->getJsUrl('browsewire/cmbannerslider/jquery-1.4.2.js') ?>"></script>
+<script type="text/javascript" src="<?php echo $this->getJsUrl('browsewire/cmbannerslider/coin-slider.min.js') ?>"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('browsewire/cmbannerslider/coin-slider-styles.css');?>" media="all" />
+
+<div id='coin-slider'>
+
+	    <?php foreach ($bannerCollection as $banner): ?>  
+ <?php //print_r($banner); ?>
+                <a href="<?php echo $banner['weblink'];?>"><img src="<?php  echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) .'cmbannerslider/' . $banner['filename']?>" height="100%" width="100%"/>
+		<?php if ($showdesc == '1'):?>
+		<span><?php  echo $banner['content']; ?> </span>
+		<?php endif;?>
+		</a>
+		
+	    <?php endforeach; ?>
+ 
+</div>
+
+<script type="text/javascript">
+	$.noConflict();
+	var timeDelay   = <?php if ($timeDelay!=null){ echo $timeDelay;} else { echo 1000; } ?>;
+	var width       = <?php if ($width!=null){ echo $width;} else { echo 450; } ?>;
+	var height      = <?php if ($height!=null){ echo $height;} else { echo 450; } ?>;
+	var opacity     = <?php if ($opacity!=null){ echo $opacity;} else { echo 0.4; } ?>;
+	var effect      = '<?php if ($effect != null) { echo $effect; } else {echo "random";} ?>';
+	var navigation  = <?php if ($navigation != null){ echo $navigation; } else {echo "true";} ?>;
+	var hoverpause  = <?php if ($hoverpause != null){ echo $hoverpause; } else {echo "true";} ?>;
+	
+	jQuery(document).ready(function() {
+
+	jQuery('#coin-slider').coinslider({width: width,height:height,delay:timeDelay,opacity:opacity,effect:effect, navigation:navigation, hoverpause:hoverpause}); 
+	
+	}); 
+</script>
