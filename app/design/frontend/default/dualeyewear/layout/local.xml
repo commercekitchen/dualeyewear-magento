@@ -14,11 +14,24 @@
     </default>
     
     <review_product_list translate="label">
-    <reference name="right">
-        <block type="catalog/product_list_upsell" name="product.info.upsell" as="upsell_products" template="catalog/product/list/upsell.phtml">
-    	    <action method="setColumnCount"><columns>4</columns></action>
-      	 <action method="setItemLimit"><type>upsell</type><limit>4</limit></action>
+        <reference name="right">
+            <block type="catalog/product_list_upsell" name="product.info.upsell" as="upsell_products" template="catalog/product/list/upsell.phtml">
+                <action method="setColumnCount"><columns>4</columns></action>
+                <action method="setItemLimit"><type>upsell</type><limit>4</limit></action>
         </block>
-    </reference>
-  	 </review_product_list>
+        </reference>
+  	</review_product_list>
+
+    <checkout_onepage_index>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><name>js/dual/jquery-1.11.1.min.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/dual/jquery.cookie.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/dual/checkout.js</name></action>
+        </reference>
+        <reference name="after_body_start">
+            <block type="core/text" name="jquery.noconflict">
+                <action method="setText"><text><![CDATA[<script type="text/javascript">jQuery.noConflict();</script>]]></text></action>
+            </block>
+        </reference>
+    </checkout_onepage_index>
 </layout>
